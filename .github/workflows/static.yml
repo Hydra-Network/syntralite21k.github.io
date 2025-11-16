@@ -68,7 +68,5 @@ jobs:
             index.html
             singlefile.html
             autoupdate.html
-            source-${{ env.VERSION }}.zip
-            source-${{ env.VERSION }}.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
