@@ -2201,7 +2201,9 @@
                       : game.url,
                   }));
                   this.render();
-                  lucide.createIcons();
+                  setTimeout(() => {
+                    lucide.createIcons();
+                  }, 100);
                   showToast(
                     "Games Loaded",
                     `${this.games.length} games available`,
@@ -2236,7 +2238,7 @@
             <div class="carousel-card ${isWide ? "wide" : "square"}" data-id="${
                 game.id
               }">
-                <img src="${game.cover}" alt="${game.name}" loading="lazy">
+                <img src="${game.cover}" alt="${game.name}" loading="eager">
                 <div class="carousel-overlay">
                     <div class="carousel-name">${game.name}</div>
                     <div class="carousel-meta">by ${
@@ -2475,9 +2477,33 @@
 
                   const newWindow = window.open("about:blank", "_blank");
                   if (newWindow) {
-                    newWindow.document.open();
-                    newWindow.document.write(html);
-                    newWindow.document.close();
+                    setTimeout(() => {
+                      newWindow.document.open();
+                      newWindow.document.write(html);
+                      newWindow.document.close();
+
+                      setTimeout(() => {
+                        const scripts =
+                          newWindow.document.querySelectorAll("script");
+                        scripts.forEach((oldScript) => {
+                          const newScript =
+                            newWindow.document.createElement("script");
+                          Array.from(oldScript.attributes).forEach((attr) => {
+                            newScript.setAttribute(attr.name, attr.value);
+                          });
+                          if (oldScript.src) {
+                            newScript.src = oldScript.src;
+                          } else {
+                            newScript.textContent = oldScript.textContent;
+                          }
+                          oldScript.parentNode.replaceChild(
+                            newScript,
+                            oldScript
+                          );
+                        });
+                      }, 100);
+                    }, 50);
+
                     showToast(
                       "Opening Game",
                       "Game opened in new window",
@@ -2501,15 +2527,9 @@
             .getElementById("reloadBtn")
             .removeEventListener("click", this.reloadGame);
           document.getElementById("reloadBtn").addEventListener("click", () => {
-            if (this.isPlaying) {
-              const iframe = document.querySelector("#gameDisplay iframe");
-              if (iframe && iframe.contentDocument) {
-                const html = iframe.contentDocument.documentElement.outerHTML;
-                iframe.contentDocument.open();
-                iframe.contentDocument.write(html);
-                iframe.contentDocument.close();
-                showToast("Reloading", "Game is reloading...", "info");
-              }
+            if (this.isPlaying && this.currentGame) {
+              this.playGame(this.currentGame);
+              showToast("Reloading", "Game is reloading...", "info");
             }
           });
 
@@ -2590,13 +2610,31 @@
               "width: 100%; height: 100%; border: none; position: absolute; inset: 0;";
             iframe.allow = "fullscreen; autoplay; encrypted-media";
             iframe.sandbox =
-              "allow-scripts allow-same-origin allow-pointer-lock allow-forms";
+              "allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals";
+
+            let loadAttempted = false;
 
             iframe.onload = () => {
-              document.getElementById("fullscreenBtn").disabled = false;
-              this.isPlaying = true;
-              showToast("Ready", "Game loaded successfully!", "success");
-              lucide.createIcons();
+              if (!loadAttempted) {
+                loadAttempted = true;
+
+                setTimeout(() => {
+                  try {
+                    const iframeDoc = iframe.contentWindow.document;
+                    iframeDoc.open();
+                    iframeDoc.write(html);
+                    iframeDoc.close();
+
+                    document.getElementById("fullscreenBtn").disabled = false;
+                    this.isPlaying = true;
+                    showToast("Ready", "Game loaded successfully!", "success");
+                    lucide.createIcons();
+                  } catch (err) {
+                    console.error("Failed to write to iframe:", err);
+                    throw err;
+                  }
+                }, 100);
+              }
             };
 
             iframe.onerror = () => {
@@ -2604,10 +2642,6 @@
             };
 
             gameDisplay.appendChild(iframe);
-
-            iframe.contentDocument.open();
-            iframe.contentDocument.write(html);
-            iframe.contentDocument.close();
           } catch (err) {
             console.error("Failed to load game:", err);
             showToast("Error", "Failed to load game", "error");
