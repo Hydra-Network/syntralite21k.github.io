@@ -1054,7 +1054,7 @@
               Super hot ui, with 20k+ games all in one experience.
             </p>
             <div class="cta-buttons">
-              <a href="/#games" class="btn btn-primary">
+              <a href="/#games" data-route="games" class="btn btn-primary">
                 <i data-lucide="play"></i>
                 <span>Games</span>
               </a>
@@ -1134,268 +1134,268 @@
       })();
     </script>
     <script>
-            const sidebar = document.getElementById("sidebar");
-            const container = document.getElementById("appContainer");
-            const sidebarToggle = document.getElementById("sidebarToggle");
-            const sidebarOverlay = document.getElementById("sidebarOverlay");
+      const sidebar = document.getElementById("sidebar");
+      const container = document.getElementById("appContainer");
+      const sidebarToggle = document.getElementById("sidebarToggle");
+      const sidebarOverlay = document.getElementById("sidebarOverlay");
 
-            let isSidebarVisible = true;
+      let isSidebarVisible = true;
 
-            const isMobile = () => window.innerWidth <= 768;
+      const isMobile = () => window.innerWidth <= 768;
 
-            function toggleSidebar() {
-              isSidebarVisible = !isSidebarVisible;
+      function toggleSidebar() {
+        isSidebarVisible = !isSidebarVisible;
 
-              if (isMobile()) {
-                sidebar.classList.toggle("open", isSidebarVisible);
-                sidebarOverlay.classList.toggle("visible", isSidebarVisible);
+        if (isMobile()) {
+          sidebar.classList.toggle("open", isSidebarVisible);
+          sidebarOverlay.classList.toggle("visible", isSidebarVisible);
+        } else {
+          container.classList.toggle("sidebar-collapsed", !isSidebarVisible);
+          sidebar.classList.toggle("hidden", !isSidebarVisible);
+          sidebarToggle.classList.toggle("active", !isSidebarVisible);
+        }
+      }
+
+      sidebarToggle.addEventListener("click", toggleSidebar);
+
+      sidebarOverlay.addEventListener("click", () => {
+        if (isSidebarVisible) toggleSidebar();
+      });
+
+      const navItems = document.querySelectorAll(".nav-item");
+
+      function getCurrentRoute() {
+        return window.location.hash.slice(1) || null;
+      }
+
+      function isActiveRoute(href, path) {
+        const cleanHref = href.replace(/^#/, "");
+        const cleanPath = path?.replace(/^#/, "") || "";
+
+        if (cleanHref === cleanPath) return true;
+        if (!cleanPath && cleanHref === "") return true;
+        if (cleanHref && cleanPath.startsWith(cleanHref)) return true;
+        return false;
+      }
+
+      function updateNavHighlight() {
+        const currentRoute = getCurrentRoute();
+        navItems.forEach((item) => {
+          const href =
+            item.getAttribute("href") || item.getAttribute("data-route");
+          item.classList.toggle("active", isActiveRoute(href, currentRoute));
+        });
+      }
+
+      navItems.forEach((item) => {
+        item.addEventListener("click", (e) => {
+          if (isMobile() && isSidebarVisible) toggleSidebar();
+        });
+      });
+
+      updateNavHighlight();
+
+      function getPingStatus(ping) {
+        if (ping < 100) return "good";
+        if (ping < 200) return "medium";
+        return "bad";
+      }
+
+      let lastUpdateTime = Date.now();
+      let isUpdating = false;
+
+      function animateNumber(element, start, end, duration = 400) {
+        const range = end - start;
+        const startTime = performance.now();
+
+        function step(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - (1 - progress) ** 3;
+          const currentValue = Math.round(start + range * eased);
+          element.textContent = `${currentValue}ms`;
+
+          if (progress < 1) requestAnimationFrame(step);
+        }
+
+        requestAnimationFrame(step);
+      }
+
+      function updatePing(manual = false) {
+        if (isUpdating) return;
+        isUpdating = true;
+
+        const pingDisplay = document.getElementById("pingDisplay");
+        const pingBadge = document.getElementById("pingBadge");
+        const statusIndicator = document.getElementById("statusIndicator");
+        const statusTooltip = document.getElementById("statusTooltip");
+        const currentPing = parseInt(pingDisplay.textContent, 10) || 0;
+
+        statusIndicator.classList.add("loading");
+        const start = performance.now();
+
+        fetch(window.location.origin, {
+          method: "HEAD",
+          cache: "no-cache",
+        })
+          .then(() => {
+            const newPing = Math.round(performance.now() - start);
+            const status = getPingStatus(newPing);
+
+            setTimeout(() => {
+              animateNumber(pingDisplay, currentPing, newPing);
+              pingBadge.className = `status-badge ${status}`;
+              pingBadge.classList.add("updating");
+
+              setTimeout(() => pingBadge.classList.remove("updating"), 600);
+
+              statusIndicator.classList.remove("loading");
+              lastUpdateTime = Date.now();
+              isUpdating = false;
+
+              if (manual) {
+                statusTooltip.textContent = "Updated just now";
+                setTimeout(updateTooltipText, 2000);
               } else {
-                container.classList.toggle("sidebar-collapsed", !isSidebarVisible);
-                sidebar.classList.toggle("hidden", !isSidebarVisible);
-                sidebarToggle.classList.toggle("active", !isSidebarVisible);
+                updateTooltipText();
               }
+            }, 200);
+          })
+          .catch(() => {
+            pingDisplay.textContent = "Offline";
+            pingBadge.className = "status-badge offline";
+            statusIndicator.classList.remove("loading");
+            isUpdating = false;
+            lastUpdateTime = Date.now();
+            updateTooltipText();
+          });
+      }
+
+      function updateTooltipText() {
+        const statusTooltip = document.getElementById("statusTooltip");
+        const secondsAgo = Math.floor((Date.now() - lastUpdateTime) / 1000);
+
+        if (secondsAgo < 5) {
+          statusTooltip.textContent = "Click to refresh";
+        } else if (secondsAgo < 60) {
+          statusTooltip.textContent = `Updated ${secondsAgo}s ago • Click to refresh`;
+        } else {
+          const minutesAgo = Math.floor(secondsAgo / 60);
+          statusTooltip.textContent = `Updated ${minutesAgo}m ago • Click to refresh`;
+        }
+      }
+
+      document
+        .getElementById("statusIndicator")
+        .addEventListener("click", () => updatePing(true));
+
+      updatePing();
+      setInterval(updatePing, 5000);
+      setInterval(updateTooltipText, 1000);
+
+      if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+      }
+      class Router {
+        constructor() {
+          this.routes = new Map();
+          this.currentRoute = null;
+          this.cache = new Map();
+          this.isNavigating = false;
+          this.contentContainer = null;
+          this.originalContent = null;
+
+          this.init();
+        }
+
+        init() {
+          window.addEventListener("hashchange", () => {
+            this.handleRouteChange();
+          });
+
+          document.addEventListener("click", (e) => {
+            const link = e.target.closest("[data-route]");
+            if (link) {
+              e.preventDefault();
+              const path = link.getAttribute("data-route");
+              window.location.hash = path;
             }
+          });
 
-            sidebarToggle.addEventListener("click", toggleSidebar);
+          if (window.location.hash) {
+            this.handleRouteChange();
+          }
+        }
 
-            sidebarOverlay.addEventListener("click", () => {
-              if (isSidebarVisible) toggleSidebar();
-            });
+        addRoute(path, url, onLoad = null, onError = null) {
+          this.routes.set(path, { url, onLoad, onError });
+        }
 
-            const navItems = document.querySelectorAll(".nav-item");
+        addRoutes(routes) {
+          routes.forEach((route) => {
+            this.addRoute(route.path, route.url, route.onLoad, route.onError);
+          });
+        }
 
-            function getCurrentRoute() {
-              return window.location.hash.slice(1) || null;
-            }
-
-            function isActiveRoute(href, path) {
-              const cleanHref = href.replace(/^#/, "");
-              const cleanPath = path?.replace(/^#/, "") || "";
-
-              if (cleanHref === cleanPath) return true;
-              if (!cleanPath && cleanHref === "") return true;
-              if (cleanHref && cleanPath.startsWith(cleanHref)) return true;
-              return false;
-            }
-
-            function updateNavHighlight() {
-              const currentRoute = getCurrentRoute();
-              navItems.forEach((item) => {
-                const href =
-                  item.getAttribute("href") || item.getAttribute("data-route");
-                item.classList.toggle("active", isActiveRoute(href, currentRoute));
-              });
-            }
-
-            navItems.forEach((item) => {
-              item.addEventListener("click", (e) => {
-                if (isMobile() && isSidebarVisible) toggleSidebar();
-              });
-            });
-
+        handleRouteChange() {
+          const hash = window.location.hash.slice(1);
+          if (hash && this.routes.has(hash)) {
+            this.navigate(hash);
+          } else if (!hash && this.contentContainer) {
+            this.restoreOriginalContent();
+          }
+          if (typeof updateNavHighlight === "function") {
             updateNavHighlight();
+          }
+        }
 
-            function getPingStatus(ping) {
-              if (ping < 100) return "good";
-              if (ping < 200) return "medium";
-              return "bad";
+        async navigate(path) {
+          if (this.isNavigating || path === this.currentRoute) return;
+
+          const route = this.routes.get(path);
+          if (!route) return;
+
+          this.isNavigating = true;
+
+          if (!this.contentContainer) {
+            this.originalContent = document.body.innerHTML;
+            this.contentContainer = document.createElement("div");
+            this.contentContainer.id = "routerContent";
+            this.contentContainer.style.cssText =
+              "width: 100%; height: 100vh; position: fixed; top: 0; left: 0; background: var(--background); z-index: 9999; overflow: hidden;";
+          }
+
+          try {
+            let content = this.cache.get(path);
+
+            if (!content) {
+              const response = await fetch(route.url, {
+                headers: { Accept: "text/html,text/plain,*/*" },
+                cache: "no-store",
+              });
+              if (!response.ok) throw new Error(`HTTP ${response.status}`);
+              content = await response.text();
+              this.cache.set(path, content);
             }
 
-            let lastUpdateTime = Date.now();
-            let isUpdating = false;
+            await this.renderFullPage(content);
 
-            function animateNumber(element, start, end, duration = 400) {
-              const range = end - start;
-              const startTime = performance.now();
+            this.currentRoute = path;
 
-              function step(currentTime) {
-                const elapsed = currentTime - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                const eased = 1 - (1 - progress) ** 3;
-                const currentValue = Math.round(start + range * eased);
-                element.textContent = `${currentValue}ms`;
-
-                if (progress < 1) requestAnimationFrame(step);
-              }
-
-              requestAnimationFrame(step);
+            if (route.onLoad) {
+              const iframe = this.contentContainer.querySelector("iframe");
+              route.onLoad(this.contentContainer, iframe);
             }
+          } catch (error) {
+            console.error(`Failed to load route ${path}:`, error);
 
-            function updatePing(manual = false) {
-              if (isUpdating) return;
-              isUpdating = true;
-
-              const pingDisplay = document.getElementById("pingDisplay");
-              const pingBadge = document.getElementById("pingBadge");
-              const statusIndicator = document.getElementById("statusIndicator");
-              const statusTooltip = document.getElementById("statusTooltip");
-              const currentPing = parseInt(pingDisplay.textContent, 10) || 0;
-
-              statusIndicator.classList.add("loading");
-              const start = performance.now();
-
-              fetch(window.location.origin, {
-                method: "HEAD",
-                cache: "no-cache",
-              })
-                .then(() => {
-                  const newPing = Math.round(performance.now() - start);
-                  const status = getPingStatus(newPing);
-
-                  setTimeout(() => {
-                    animateNumber(pingDisplay, currentPing, newPing);
-                    pingBadge.className = `status-badge ${status}`;
-                    pingBadge.classList.add("updating");
-
-                    setTimeout(() => pingBadge.classList.remove("updating"), 600);
-
-                    statusIndicator.classList.remove("loading");
-                    lastUpdateTime = Date.now();
-                    isUpdating = false;
-
-                    if (manual) {
-                      statusTooltip.textContent = "Updated just now";
-                      setTimeout(updateTooltipText, 2000);
-                    } else {
-                      updateTooltipText();
-                    }
-                  }, 200);
-                })
-                .catch(() => {
-                  pingDisplay.textContent = "Offline";
-                  pingBadge.className = "status-badge offline";
-                  statusIndicator.classList.remove("loading");
-                  isUpdating = false;
-                  lastUpdateTime = Date.now();
-                  updateTooltipText();
-                });
-            }
-
-            function updateTooltipText() {
-              const statusTooltip = document.getElementById("statusTooltip");
-              const secondsAgo = Math.floor((Date.now() - lastUpdateTime) / 1000);
-
-              if (secondsAgo < 5) {
-                statusTooltip.textContent = "Click to refresh";
-              } else if (secondsAgo < 60) {
-                statusTooltip.textContent = `Updated ${secondsAgo}s ago • Click to refresh`;
-              } else {
-                const minutesAgo = Math.floor(secondsAgo / 60);
-                statusTooltip.textContent = `Updated ${minutesAgo}m ago • Click to refresh`;
+            if (route.onError) {
+              route.onError(error);
+            } else {
+              if (!this.contentContainer.parentNode) {
+                document.body.appendChild(this.contentContainer);
               }
-            }
-
-            document
-              .getElementById("statusIndicator")
-              .addEventListener("click", () => updatePing(true));
-
-            updatePing();
-            setInterval(updatePing, 5000);
-            setInterval(updateTooltipText, 1000);
-
-            if (typeof lucide !== "undefined") {
-              lucide.createIcons();
-            }
-            class Router {
-              constructor() {
-                this.routes = new Map();
-                this.currentRoute = null;
-                this.cache = new Map();
-                this.isNavigating = false;
-                this.contentContainer = null;
-                this.originalContent = null;
-
-                this.init();
-              }
-
-              init() {
-                window.addEventListener("hashchange", () => {
-                  this.handleRouteChange();
-                });
-
-                document.addEventListener("click", (e) => {
-                  const link = e.target.closest("[data-route]");
-                  if (link) {
-                    e.preventDefault();
-                    const path = link.getAttribute("data-route");
-                    window.location.hash = path;
-                  }
-                });
-
-                if (window.location.hash) {
-                  this.handleRouteChange();
-                }
-              }
-
-              addRoute(path, url, onLoad = null, onError = null) {
-                this.routes.set(path, { url, onLoad, onError });
-              }
-
-              addRoutes(routes) {
-                routes.forEach((route) => {
-                  this.addRoute(route.path, route.url, route.onLoad, route.onError);
-                });
-              }
-
-              handleRouteChange() {
-                const hash = window.location.hash.slice(1);
-                if (hash && this.routes.has(hash)) {
-                  this.navigate(hash);
-                } else if (!hash && this.contentContainer) {
-                  this.restoreOriginalContent();
-                }
-                if (typeof updateNavHighlight === "function") {
-                  updateNavHighlight();
-                }
-              }
-
-              async navigate(path) {
-                if (this.isNavigating || path === this.currentRoute) return;
-
-                const route = this.routes.get(path);
-                if (!route) return;
-
-                this.isNavigating = true;
-
-                if (!this.contentContainer) {
-                  this.originalContent = document.body.innerHTML;
-                  this.contentContainer = document.createElement("div");
-                  this.contentContainer.id = "routerContent";
-                  this.contentContainer.style.cssText =
-                    "width: 100%; height: 100vh; position: fixed; top: 0; left: 0; background: var(--background); z-index: 9999; overflow: hidden;";
-                }
-
-                try {
-                  let content = this.cache.get(path);
-
-                  if (!content) {
-                    const response = await fetch(route.url, {
-                      headers: { Accept: "text/html,text/plain,*/*" },
-                      cache: "no-store",
-                    });
-                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                    content = await response.text();
-                    this.cache.set(path, content);
-                  }
-
-                  await this.renderFullPage(content);
-
-                  this.currentRoute = path;
-
-                  if (route.onLoad) {
-                    const iframe = this.contentContainer.querySelector("iframe");
-                    route.onLoad(this.contentContainer, iframe);
-                  }
-                } catch (error) {
-                  console.error(`Failed to load route ${path}:`, error);
-
-                  if (route.onError) {
-                    route.onError(error);
-                  } else {
-                    if (!this.contentContainer.parentNode) {
-                      document.body.appendChild(this.contentContainer);
-                    }
-                    this.contentContainer.innerHTML = `
+              this.contentContainer.innerHTML = `
                 <div style="display: flex; align-items: center; justify-content: center; height: 100vh; flex-direction: column; font-family: system-ui; background: var(--background); color: var(--foreground);">
                   <h2 style="margin: 0 0 1rem 0;">Failed to load content</h2>
                   <p style="margin: 0 0 1.5rem 0; color: var(--muted-foreground);">Could not fetch the requested page</p>
@@ -1404,167 +1404,167 @@
                   </button>
                 </div>
               `;
-                  }
-                } finally {
-                  this.isNavigating = false;
-                }
-              }
+            }
+          } finally {
+            this.isNavigating = false;
+          }
+        }
 
-              async renderFullPage(content) {
-                return new Promise((resolve) => {
-                  this.contentContainer.style.opacity = "0";
-                  this.contentContainer.style.transition = "opacity 0.3s ease";
+        async renderFullPage(content) {
+          return new Promise((resolve) => {
+            this.contentContainer.style.opacity = "0";
+            this.contentContainer.style.transition = "opacity 0.3s ease";
 
-                  const iframe = document.createElement("iframe");
-                  iframe.style.cssText =
-                    "width: 100%; height: 100%; border: none; display: block;";
+            const iframe = document.createElement("iframe");
+            iframe.style.cssText =
+              "width: 100%; height: 100%; border: none; display: block;";
 
-                  if (iframe.hasAttribute("sandbox")) {
-                    iframe.removeAttribute("sandbox");
-                  }
-
-                  this.contentContainer.innerHTML = "";
-                  this.contentContainer.appendChild(iframe);
-
-                  if (!this.contentContainer.parentNode) {
-                    document.body.appendChild(this.contentContainer);
-                  }
-
-                  const writeContent = () => {
-                    try {
-                      const iframeDoc =
-                        iframe.contentDocument || iframe.contentWindow.document;
-
-                      if (iframe.hasAttribute("sandbox")) {
-                        iframe.removeAttribute("sandbox");
-                      }
-
-                      iframeDoc.open();
-                      iframeDoc.write(content);
-                      iframeDoc.close();
-
-                      const checkReady = setInterval(() => {
-                        try {
-                          if (iframeDoc.readyState === "complete") {
-                            clearInterval(checkReady);
-
-                            requestAnimationFrame(() => {
-                              this.contentContainer.style.opacity = "1";
-                              setTimeout(resolve, 300);
-                            });
-                          }
-                        } catch (e) {
-                          clearInterval(checkReady);
-                          this.contentContainer.style.opacity = "1";
-                          resolve();
-                        }
-                      }, 50);
-
-                      setTimeout(() => {
-                        clearInterval(checkReady);
-                        if (this.contentContainer.style.opacity === "0") {
-                          this.contentContainer.style.opacity = "1";
-                          resolve();
-                        }
-                      }, 3000);
-                    } catch (err) {
-                      console.error("Error writing to iframe:", err);
-                      this.contentContainer.style.opacity = "1";
-                      resolve();
-                    }
-                  };
-
-                  if (iframe.contentDocument) {
-                    writeContent();
-                  } else {
-                    iframe.onload = writeContent;
-                  }
-
-                  iframe.onerror = () => {
-                    console.error("Iframe failed to load");
-                    this.contentContainer.style.opacity = "1";
-                    resolve();
-                  };
-
-                  setTimeout(() => {
-                    if (this.contentContainer.style.opacity === "0") {
-                      this.contentContainer.style.opacity = "1";
-                      resolve();
-                    }
-                  }, 5000);
-                });
-              }
-
-              restoreOriginalContent() {
-                if (this.contentContainer && this.originalContent) {
-                  this.contentContainer.style.opacity = "0";
-
-                  setTimeout(() => {
-                    if (this.contentContainer.parentNode) {
-                      this.contentContainer.remove();
-                    }
-
-                    this.currentRoute = null;
-
-                    if (typeof lucide !== "undefined") {
-                      lucide.createIcons();
-                    }
-                  }, 300);
-                }
-              }
-
-              clearCache(path = null) {
-                if (path) {
-                  this.cache.delete(path);
-                } else {
-                  this.cache.clear();
-                }
-              }
-
-              preload(path) {
-                const route = this.routes.get(path);
-                if (!route || this.cache.has(path)) return;
-
-                fetch(route.url, { cache: "no-store" })
-                  .then((res) => res.text())
-                  .then((content) => this.cache.set(path, content))
-                  .catch((err) => console.warn(`Preload failed for ${path}:`, err));
-              }
+            if (iframe.hasAttribute("sandbox")) {
+              iframe.removeAttribute("sandbox");
             }
 
-            const router = new Router();
+            this.contentContainer.innerHTML = "";
+            this.contentContainer.appendChild(iframe);
 
-            router.addRoute(
-              "games",
-              "https://raw.githubusercontent.com/outbrowsed/syntralite21k/refs/heads/main/games.html",
-              (container, iframe) => {
-                console.log("Games page loaded");
-              }
-            );
+            if (!this.contentContainer.parentNode) {
+              document.body.appendChild(this.contentContainer);
+            }
 
-            router.addRoute(
-              "settings",
-              "https://cdn.jsdelivr.net/gh/outbrowsed/syntralite21k@latest/settings.html",
-              (container, iframe) => {
-                console.log("Settings page loaded");
-              }
-            );
+            const writeContent = () => {
+              try {
+                const iframeDoc =
+                  iframe.contentDocument || iframe.contentWindow.document;
 
-            router.addRoute(
-              "chat",
-              "https://cdn.jsdelivr.net/gh/outbrowsed/syntralite21k@latest/chat.html",
-              (container, iframe) => {
-                console.log("Chat page loaded");
-              }
-            );
+                if (iframe.hasAttribute("sandbox")) {
+                  iframe.removeAttribute("sandbox");
+                }
 
-            router.addRoute(
-              "ai",
-              "https://cdn.jsdelivr.net/gh/outbrowsed/syntralite21k@latest/ai.html",
-              (container, iframe) => {
-                console.log("ai page loaded");
+                iframeDoc.open();
+                iframeDoc.write(content);
+                iframeDoc.close();
+
+                const checkReady = setInterval(() => {
+                  try {
+                    if (iframeDoc.readyState === "complete") {
+                      clearInterval(checkReady);
+
+                      requestAnimationFrame(() => {
+                        this.contentContainer.style.opacity = "1";
+                        setTimeout(resolve, 300);
+                      });
+                    }
+                  } catch (e) {
+                    clearInterval(checkReady);
+                    this.contentContainer.style.opacity = "1";
+                    resolve();
+                  }
+                }, 50);
+
+                setTimeout(() => {
+                  clearInterval(checkReady);
+                  if (this.contentContainer.style.opacity === "0") {
+                    this.contentContainer.style.opacity = "1";
+                    resolve();
+                  }
+                }, 3000);
+              } catch (err) {
+                console.error("Error writing to iframe:", err);
+                this.contentContainer.style.opacity = "1";
+                resolve();
               }
-            );
+            };
+
+            if (iframe.contentDocument) {
+              writeContent();
+            } else {
+              iframe.onload = writeContent;
+            }
+
+            iframe.onerror = () => {
+              console.error("Iframe failed to load");
+              this.contentContainer.style.opacity = "1";
+              resolve();
+            };
+
+            setTimeout(() => {
+              if (this.contentContainer.style.opacity === "0") {
+                this.contentContainer.style.opacity = "1";
+                resolve();
+              }
+            }, 5000);
+          });
+        }
+
+        restoreOriginalContent() {
+          if (this.contentContainer && this.originalContent) {
+            this.contentContainer.style.opacity = "0";
+
+            setTimeout(() => {
+              if (this.contentContainer.parentNode) {
+                this.contentContainer.remove();
+              }
+
+              this.currentRoute = null;
+
+              if (typeof lucide !== "undefined") {
+                lucide.createIcons();
+              }
+            }, 300);
+          }
+        }
+
+        clearCache(path = null) {
+          if (path) {
+            this.cache.delete(path);
+          } else {
+            this.cache.clear();
+          }
+        }
+
+        preload(path) {
+          const route = this.routes.get(path);
+          if (!route || this.cache.has(path)) return;
+
+          fetch(route.url, { cache: "no-store" })
+            .then((res) => res.text())
+            .then((content) => this.cache.set(path, content))
+            .catch((err) => console.warn(`Preload failed for ${path}:`, err));
+        }
+      }
+
+      const router = new Router();
+
+      router.addRoute(
+        "games",
+        "https://raw.githubusercontent.com/outbrowsed/syntralite21k/refs/heads/main/games.html",
+        (container, iframe) => {
+          console.log("Games page loaded");
+        }
+      );
+
+      router.addRoute(
+        "settings",
+        "https://cdn.jsdelivr.net/gh/outbrowsed/syntralite21k@latest/settings.html",
+        (container, iframe) => {
+          console.log("Settings page loaded");
+        }
+      );
+
+      router.addRoute(
+        "chat",
+        "https://cdn.jsdelivr.net/gh/outbrowsed/syntralite21k@latest/chat.html",
+        (container, iframe) => {
+          console.log("Chat page loaded");
+        }
+      );
+
+      router.addRoute(
+        "ai",
+        "https://cdn.jsdelivr.net/gh/outbrowsed/syntralite21k@latest/ai.html",
+        (container, iframe) => {
+          console.log("ai page loaded");
+        }
+      );
     </script>
   </body>
 </html>
