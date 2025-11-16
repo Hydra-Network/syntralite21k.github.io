@@ -34,7 +34,7 @@
         --sidebar-foreground: oklch(0.985 0 0);
       }
 
-      @import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
 
       * {
         margin: 0;
@@ -52,7 +52,7 @@
       }
 
       body {
-        font-family: 'Geist', sans-serif;
+        font-family: "Geist", sans-serif;
         background-color: var(--background);
         color: var(--foreground);
         -webkit-font-smoothing: antialiased;
@@ -777,7 +777,7 @@
         transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
         position: relative;
         z-index: 1;
-        font-family: 'Geist', sans-serif;
+        font-family: "Geist", sans-serif;
         display: inline-flex;
         align-items: center;
         gap: 0.75rem;
@@ -967,7 +967,7 @@
       }
 
       .tooltip::after {
-        content: '';
+        content: "";
         position: absolute;
         top: 100%;
         left: 50%;
@@ -1186,7 +1186,11 @@
       .carousel-overlay {
         position: absolute;
         inset: 0;
-        background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.98) 100%);
+        background: linear-gradient(
+          180deg,
+          transparent 40%,
+          rgba(0, 0, 0, 0.98) 100%
+        );
         padding: 20px;
         display: flex;
         flex-direction: column;
@@ -1282,7 +1286,11 @@
       .game-info {
         position: absolute;
         inset: 0;
-        background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.98) 100%);
+        background: linear-gradient(
+          180deg,
+          transparent 40%,
+          rgba(0, 0, 0, 0.98) 100%
+        );
         padding: 20px;
         display: flex;
         flex-direction: column;
@@ -1541,8 +1549,14 @@
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <path d="m2.93 26.228 13.922-9.792v43.365L2.931 56.653z" fill="#fff" />
-            <path d="m2.93 56.653 7.776-10.141 50.108 32.042-13.733 7.825z" fill="#fff" />
+            <path
+              d="m2.93 26.228 13.922-9.792v43.365L2.931 56.653z"
+              fill="#fff"
+            />
+            <path
+              d="m2.93 56.653 7.776-10.141 50.108 32.042-13.733 7.825z"
+              fill="#fff"
+            />
             <path
               d="M46.893 86.705v-5.493l13.921-2.654v35.997L42.863 121l3.297-16.436z"
               fill="#fff"
@@ -1551,9 +1565,18 @@
               d="M0 94.772V79.384l46.16 25.529L42.863 121zM70.34 72.74v-2.098l16.485-5.945-.367 31.474-16.119 7.873z"
               fill="#fff"
             />
-            <path d="m26.377 43.015 10.706-10.492 49.742 32.173-13.367 7.694z" fill="#fff" />
-            <path d="M26.377 9.442 43.596 0l-1.832 46.512-15.387-3.498z" fill="#fff" />
-            <path d="M41.764 10.841h4.396l-3.663 2.098-.733 3.497z" fill="#fff" />
+            <path
+              d="m26.377 43.015 10.706-10.492 49.742 32.173-13.367 7.694z"
+              fill="#fff"
+            />
+            <path
+              d="M26.377 9.442 43.596 0l-1.832 46.512-15.387-3.498z"
+              fill="#fff"
+            />
+            <path
+              d="M41.764 10.841h4.396l-3.663 2.098-.733 3.497z"
+              fill="#fff"
+            />
             <path
               d="M31.506 10.142 43.596 0l41.03 25.879v15.037zm75.682 90.483q1.438.938 3.124 1.656 1.689.719 3.5 1.188 1.845.468 3.75.687 1.907.25 3.782.25 6.375 0 9.812-2.75 3.47-2.718 3.469-8.187v-1.25a19 19 0 0 1-2.75 1.562q-1.5.688-3.25 1.188a27 27 0 0 1-3.656.781q-1.907.25-3.875.25-4.22 0-7.563-1.219-3.312-1.25-5.625-3.625-2.281-2.406-3.5-5.906t-1.218-8V59.125h9.218v15.563q0 6.688 2.532 9.874Q117.5 87.72 123 87.72q3.875 0 6.844-1.344 3-1.375 4.781-3.5v-23.75h9.25v32.656q0 5.281-1.5 9.157-1.5 3.906-4.375 6.468-2.844 2.563-7 3.813-4.156 1.281-9.438 1.281-5.156 0-9.624-1.094-4.47-1.093-8.188-2.968zm48.656-41.5h9.25v3.125q3.687-2.094 7.031-2.937 3.375-.844 6.594-.844 4.218 0 7.812 1.25 3.594 1.218 6.219 3.656 2.625 2.437 4.094 6.094 1.5 3.625 1.5 8.406V96h-9.219V79.375q0-3.03-.875-5.406-.843-2.406-2.469-4.031-1.593-1.657-3.906-2.5-2.281-.876-5.125-.876-1.5 0-3.094.313-1.562.312-3.094.906-1.5.562-2.906 1.438a14.8 14.8 0 0 0-2.562 1.937V96h-9.25zm59.437 6.938h-8.906v-6.938h8.906V47.656h9.25v11.469h8.907v6.938h-8.907V96h-9.25zm26.375-6.938h9.25v5.313a40.3 40.3 0 0 1 6.469-3.938q3.406-1.656 6.781-2.531l2.719 8.468q-5.344.532-9.406 2.407-4.031 1.844-6.563 5.219V96h-9.25zm30.375 25.25q0-2.655 1.157-4.844 1.156-2.187 3.468-3.75 2.313-1.594 5.75-2.437 3.469-.875 8.063-.875 3.406 0 7.156.5 3.782.5 7.781 1.531a7.3 7.3 0 0 0-1.062-3.219q-.906-1.5-2.532-2.562-1.594-1.095-3.874-1.688-2.25-.594-5.126-.594-1.562 0-3.437.188a45.7 45.7 0 0 0-7.844 1.5 25.6 25.6 0 0 0-3.625 1.344l-2.812-7.594q2.094-.75 4.468-1.375 2.407-.625 4.907-1.062a59 59 0 0 1 5-.72 49 49 0 0 1 4.843-.25q10.344 0 15.376 5.282 5.031 5.28 5.031 16.188V96h-9.25v-3.469a30 30 0 0 1-3.157 1.594 27 27 0 0 1-3.687 1.313 31.5 31.5 0 0 1-4.313.874q-2.28.344-4.843.344-4.313 0-7.594-.937-3.25-.938-5.437-2.594t-3.313-3.875q-1.094-2.25-1.094-4.875m9.75-.312q0 .906.469 1.75.468.811 1.5 1.468 1.031.625 2.625 1.031 1.625.376 3.906.376 2.438 0 4.719-.438a27.5 27.5 0 0 0 4.25-1.156 21.7 21.7 0 0 0 3.562-1.656q1.594-.938 2.657-1.938v-1.625a54 54 0 0 0-4.219-1 50 50 0 0 0-3.969-.625 47 47 0 0 0-3.562-.344 52 52 0 0 0-2.907-.094q-2.593 0-4.312.344-1.719.345-2.781.938-1.064.563-1.5 1.344a3.3 3.3 0 0 0-.438 1.624"
               fill="#fff"
@@ -1565,7 +1588,12 @@
             <i data-lucide="home"></i>
             <span>Home</span>
           </a>
-          <a href="/#games" data-route="games" class="nav-item active" data-page="games">
+          <a
+            href="/#games"
+            data-route="games"
+            class="nav-item active"
+            data-page="games"
+          >
             <i data-lucide="gamepad-2"></i>
             Games
           </a>
@@ -1581,7 +1609,9 @@
 
         <div class="sidebar-footer">
           <div class="status-indicator" id="statusIndicator">
-            <div class="status-tooltip" id="statusTooltip">Click to refresh</div>
+            <div class="status-tooltip" id="statusTooltip">
+              Click to refresh
+            </div>
             <i data-lucide="wifi"></i>
             <div class="status-badge good" id="pingBadge">
               <div class="status-dot"></div>
@@ -1589,7 +1619,12 @@
             </div>
           </div>
           <div class="footer-actions">
-            <a href="/#settings" class="footer-btn" data-route="settings"aria-label="Settings">
+            <a
+              href="/#settings"
+              class="footer-btn"
+              data-route="settings"
+              aria-label="Settings"
+            >
               <i data-lucide="settings"></i>
             </a>
             <a
@@ -1621,7 +1656,11 @@
 
       <main class="content-wrapper">
         <div class="content-area">
-          <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+          <button
+            class="sidebar-toggle"
+            id="sidebarToggle"
+            aria-label="Toggle sidebar"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -1639,7 +1678,12 @@
           <div class="games-content">
             <div class="browse-view" id="browseView">
               <div class="search-wrapper">
-                <input type="text" class="search-input" placeholder="Search games..." id="search" />
+                <input
+                  type="text"
+                  class="search-input"
+                  placeholder="Search games..."
+                  id="search"
+                />
                 <span class="search-icon">
                   <i data-lucide="search"></i>
                 </span>
@@ -1710,7 +1754,10 @@
                   </svg>
                   <span class="breadcrumb-text">Games</span>
                   <span class="breadcrumb-separator">›</span>
-                  <span class="breadcrumb-text breadcrumb-current" id="breadcrumbGameName"></span>
+                  <span
+                    class="breadcrumb-text breadcrumb-current"
+                    id="breadcrumbGameName"
+                  ></span>
                 </div>
               </div>
 
@@ -1748,7 +1795,9 @@
                         stroke-linecap="round"
                         stroke-linejoin="round"
                       >
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                        <path
+                          d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                        />
                         <polyline points="15 3 21 3 21 9" />
                         <line x1="10" x2="21" y1="14" y2="3" />
                       </svg>
@@ -1786,14 +1835,22 @@
                           stroke-linecap="round"
                           stroke-linejoin="round"
                         >
-                          <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                          <path
+                            d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"
+                          />
                           <path d="M3 3v5h5" />
-                          <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16" />
+                          <path
+                            d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"
+                          />
                           <path d="M16 16h5v5" />
                         </svg>
                         <span class="tooltip">Reload</span>
                       </button>
-                      <button class="control-button" id="fullscreenBtn" disabled>
+                      <button
+                        class="control-button"
+                        id="fullscreenBtn"
+                        disabled
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="24"
@@ -1835,7 +1892,7 @@
       (function () {
         function applyCloakFromStorage() {
           try {
-            const saved = localStorage.getItem('cloak_settings');
+            const saved = localStorage.getItem("cloak_settings");
             if (!saved) return;
 
             const settings = JSON.parse(saved);
@@ -1843,8 +1900,8 @@
 
             let link = document.querySelector("link[rel~='icon']");
             if (!link) {
-              link = document.createElement('link');
-              link.rel = 'icon';
+              link = document.createElement("link");
+              link.rel = "icon";
               document.head.appendChild(link);
             }
             link.href = settings.icon;
@@ -1858,11 +1915,11 @@
               }
             });
 
-            observer.observe(document.querySelector('head'), {
+            observer.observe(document.querySelector("head"), {
               childList: true,
               subtree: true,
               attributes: true,
-              attributeFilter: ['href'],
+              attributeFilter: ["href"],
             });
 
             const titleObserver = new MutationObserver(function () {
@@ -1871,7 +1928,7 @@
               }
             });
 
-            const titleEl = document.querySelector('title');
+            const titleEl = document.querySelector("title");
             if (titleEl) {
               titleObserver.observe(titleEl, {
                 childList: true,
@@ -1879,22 +1936,21 @@
               });
             }
           } catch (error) {
-            console.error('Failed to apply cloak:', error);
+            console.error("Failed to apply cloak:", error);
           }
         }
 
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', applyCloakFromStorage);
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", applyCloakFromStorage);
         } else {
           applyCloakFromStorage();
         }
       })();
-    </script>
-    <script>
-      const sidebar = document.getElementById('sidebar');
-      const container = document.getElementById('appContainer');
-      const sidebarToggle = document.getElementById('sidebarToggle');
-      const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+      const sidebar = document.getElementById("sidebar");
+      const container = document.getElementById("appContainer");
+      const sidebarToggle = document.getElementById("sidebarToggle");
+      const sidebarOverlay = document.getElementById("sidebarOverlay");
 
       let sidebarVisible = true;
 
@@ -1906,39 +1962,41 @@
         sidebarVisible = !sidebarVisible;
 
         if (onmobile()) {
-          sidebar.classList.toggle('open', sidebarVisible);
-          sidebarOverlay.classList.toggle('visible', sidebarVisible);
+          sidebar.classList.toggle("open", sidebarVisible);
+          sidebarOverlay.classList.toggle("visible", sidebarVisible);
         } else {
-          container.classList.toggle('sidebar-collapsed', !sidebarVisible);
-          sidebar.classList.toggle('hidden', !sidebarVisible);
-          sidebarToggle.classList.toggle('active', !sidebarVisible);
+          container.classList.toggle("sidebar-collapsed", !sidebarVisible);
+          sidebar.classList.toggle("hidden", !sidebarVisible);
+          sidebarToggle.classList.toggle("active", !sidebarVisible);
         }
       }
 
-      sidebarToggle.addEventListener('click', toggleSidebar);
-      sidebarOverlay.addEventListener('click', () => {
+      sidebarToggle.addEventListener("click", toggleSidebar);
+      sidebarOverlay.addEventListener("click", () => {
         if (sidebarVisible) toggleSidebar();
       });
 
-      const navitems = document.querySelectorAll('.nav-item');
+      const navitems = document.querySelectorAll(".nav-item");
       const currentPath = window.location.pathname;
 
       function isActiveRoute(href, path) {
         if (href === path) return true;
-        if (path === '/' && href === '/') return true;
-        if (href !== '/' && path.startsWith(href)) return true;
+        if (path === "/" && href === "/") return true;
+        if (href !== "/" && path.startsWith(href)) return true;
         return false;
       }
-      const isalractive = Array.from(navitems).some((item) => item.classList.contains('active'));
+      const isalractive = Array.from(navitems).some((item) =>
+        item.classList.contains("active")
+      );
 
       navitems.forEach((item) => {
-        const href = item.getAttribute('href');
+        const href = item.getAttribute("href");
 
         if (!isalractive && isActiveRoute(href, currentPath)) {
-          item.classList.add('active');
+          item.classList.add("active");
         }
 
-        item.addEventListener('click', () => {
+        item.addEventListener("click", () => {
           if (onmobile() && sidebarVisible) {
             toggleSidebar();
           }
@@ -1946,9 +2004,9 @@
       });
 
       function getPingStatus(ping) {
-        if (ping < 100) return 'good';
-        if (ping < 200) return 'medium';
-        return 'bad';
+        if (ping < 100) return "good";
+        if (ping < 200) return "medium";
+        return "bad";
       }
 
       let lastUpdateTime = Date.now();
@@ -1978,17 +2036,17 @@
         if (isUpdating) return;
 
         isUpdating = true;
-        const pingDisplay = document.getElementById('pingDisplay');
-        const pingBadge = document.getElementById('pingBadge');
-        const statusIndicator = document.getElementById('statusIndicator');
-        const statusTooltip = document.getElementById('statusTooltip');
+        const pingDisplay = document.getElementById("pingDisplay");
+        const pingBadge = document.getElementById("pingBadge");
+        const statusIndicator = document.getElementById("statusIndicator");
+        const statusTooltip = document.getElementById("statusTooltip");
         const currentPing = parseInt(pingDisplay.textContent) || 0;
 
-        statusIndicator.classList.add('loading');
+        statusIndicator.classList.add("loading");
 
         const start = performance.now();
 
-        fetch(window.location.origin, { method: 'HEAD', cache: 'no-cache' })
+        fetch(window.location.origin, { method: "HEAD", cache: "no-cache" })
           .then(() => {
             const newPing = Math.round(performance.now() - start);
             const status = getPingStatus(newPing);
@@ -1997,18 +2055,18 @@
               animateNumber(pingDisplay, currentPing, newPing);
 
               pingBadge.className = `status-badge ${status}`;
-              pingBadge.classList.add('updating');
+              pingBadge.classList.add("updating");
 
               setTimeout(() => {
-                pingBadge.classList.remove('updating');
+                pingBadge.classList.remove("updating");
               }, 600);
 
-              statusIndicator.classList.remove('loading');
+              statusIndicator.classList.remove("loading");
               lastUpdateTime = Date.now();
               isUpdating = false;
 
               if (manual) {
-                statusTooltip.textContent = 'Updated just now';
+                statusTooltip.textContent = "Updated just now";
                 setTimeout(() => {
                   updateTooltipText();
                 }, 2000);
@@ -2018,9 +2076,9 @@
             }, 200);
           })
           .catch(() => {
-            pingDisplay.textContent = 'Offline';
-            pingBadge.className = 'status-badge offline';
-            statusIndicator.classList.remove('loading');
+            pingDisplay.textContent = "Offline";
+            pingBadge.className = "status-badge offline";
+            statusIndicator.classList.remove("loading");
             isUpdating = false;
             lastUpdateTime = Date.now();
             updateTooltipText();
@@ -2028,11 +2086,11 @@
       }
 
       function updateTooltipText() {
-        const statusTooltip = document.getElementById('statusTooltip');
+        const statusTooltip = document.getElementById("statusTooltip");
         const secondsAgo = Math.floor((Date.now() - lastUpdateTime) / 1000);
 
         if (secondsAgo < 5) {
-          statusTooltip.textContent = 'Click to refresh';
+          statusTooltip.textContent = "Click to refresh";
         } else if (secondsAgo < 60) {
           statusTooltip.textContent = `Updated ${secondsAgo}s ago • Click to refresh`;
         } else {
@@ -2041,23 +2099,25 @@
         }
       }
 
-      document.getElementById('statusIndicator').addEventListener('click', () => {
-        updatePing(true);
-      });
+      document
+        .getElementById("statusIndicator")
+        .addEventListener("click", () => {
+          updatePing(true);
+        });
 
       updatePing();
       setInterval(updatePing, 5000);
       setInterval(updateTooltipText, 1000);
 
-      function showToast(title, message, type = 'info') {
-        const container = document.getElementById('toastContainer');
-        const toast = document.createElement('div');
+      function showToast(title, message, type = "info") {
+        const container = document.getElementById("toastContainer");
+        const toast = document.createElement("div");
         toast.className = `toast ${type}`;
 
         const iconMap = {
-          success: 'check-circle',
-          error: 'x-circle',
-          info: 'info',
+          success: "check-circle",
+          error: "x-circle",
+          info: "info",
         };
 
         toast.innerHTML = `
@@ -2072,7 +2132,7 @@
         lucide.createIcons();
 
         setTimeout(() => {
-          toast.classList.add('removing');
+          toast.classList.add("removing");
           setTimeout(() => {
             toast.remove();
           }, 300);
@@ -2080,11 +2140,11 @@
       }
 
       const api = {
-        COVER_URL: 'https://cdn.jsdelivr.net/gh/gn-math/covers@main',
-        HTML_URL: 'https://cdn.jsdelivr.net/gh/gn-math/html@main',
+        COVER_URL: "https://cdn.jsdelivr.net/gh/gn-math/covers@main",
+        HTML_URL: "https://cdn.jsdelivr.net/gh/gn-math/html@main",
         ZONES_URLS: [
-          'https://cdn.jsdelivr.net/gh/gn-math/assets@main/zones.json',
-          'https://raw.githubusercontent.com/gn-math/assets/main/zones.json',
+          "https://cdn.jsdelivr.net/gh/gn-math/assets@main/zones.json",
+          "https://raw.githubusercontent.com/gn-math/assets/main/zones.json",
         ],
       };
 
@@ -2096,7 +2156,7 @@
       const app = {
         games: [],
         currentGame: null,
-        activeFilter: 'all',
+        activeFilter: "all",
         isPlaying: false,
 
         async init() {
@@ -2107,43 +2167,55 @@
         },
 
         setupEventListeners() {
-          document.getElementById('backBreadcrumb').addEventListener('click', () => {
-            this.showBrowse();
-          });
+          document
+            .getElementById("backBreadcrumb")
+            .addEventListener("click", () => {
+              this.showBrowse();
+            });
 
-          document.getElementById('carouselPrev').addEventListener('click', () => {
-            this.scrollCarousel(-1);
-          });
+          document
+            .getElementById("carouselPrev")
+            .addEventListener("click", () => {
+              this.scrollCarousel(-1);
+            });
 
-          document.getElementById('carouselNext').addEventListener('click', () => {
-            this.scrollCarousel(1);
-          });
+          document
+            .getElementById("carouselNext")
+            .addEventListener("click", () => {
+              this.scrollCarousel(1);
+            });
         },
 
         async loadGames() {
           for (const url of api.ZONES_URLS) {
             try {
-              const res = await fetch(url, { cache: 'no-cache' });
+              const res = await fetch(url, { cache: "no-cache" });
               if (res.ok) {
                 const data = await res.json();
                 if (Array.isArray(data) && data.length > 0) {
                   this.games = data.map((game) => ({
                     ...game,
-                    cover: game.cover.replace('{COVER_URL}', api.COVER_URL),
-                    url: game.url ? game.url.replace('{HTML_URL}', api.HTML_URL) : game.url,
+                    cover: game.cover.replace("{COVER_URL}", api.COVER_URL),
+                    url: game.url
+                      ? game.url.replace("{HTML_URL}", api.HTML_URL)
+                      : game.url,
                   }));
                   this.render();
                   lucide.createIcons();
-                  showToast('Games Loaded', `${this.games.length} games available`, 'success');
+                  showToast(
+                    "Games Loaded",
+                    `${this.games.length} games available`,
+                    "success"
+                  );
                   return;
                 }
               }
             } catch (err) {
-              console.error('Failed to load from:', url, err);
+              console.error("Failed to load from:", url, err);
             }
           }
-          showToast('Error', 'Failed to load games', 'error');
-          console.error('All API endpoints failed to load');
+          showToast("Error", "Failed to load games", "error");
+          console.error("All API endpoints failed to load");
         },
 
         render() {
@@ -2156,36 +2228,46 @@
           const shuffled = [...this.games]
             .sort(() => Math.random() - 0.5)
             .slice(0, CONFIG.CAROUSEL_SIZE);
-          const carousel = document.getElementById('carousel');
+          const carousel = document.getElementById("carousel");
           carousel.innerHTML = shuffled
             .map((game, i) => {
               const isWide = i % 3 === 0;
               return `
-            <div class="carousel-card ${isWide ? 'wide' : 'square'}" data-id="${game.id}">
+            <div class="carousel-card ${isWide ? "wide" : "square"}" data-id="${
+                game.id
+              }">
                 <img src="${game.cover}" alt="${game.name}" loading="lazy">
                 <div class="carousel-overlay">
                     <div class="carousel-name">${game.name}</div>
-                    <div class="carousel-meta">by ${game.author || 'Unknown'}</div>
+                    <div class="carousel-meta">by ${
+                      game.author || "Unknown"
+                    }</div>
                 </div>
             </div>
         `;
             })
-            .join('');
+            .join("");
 
-          carousel.querySelectorAll('.carousel-card').forEach((card) => {
-            card.addEventListener('click', () => this.showPlayer(parseInt(card.dataset.id, 10)));
+          carousel.querySelectorAll(".carousel-card").forEach((card) => {
+            card.addEventListener("click", () =>
+              this.showPlayer(parseInt(card.dataset.id, 10))
+            );
           });
         },
 
         renderFeatured() {
           const featured = this.games.filter((g) => g.featured);
-          this.renderGrid('featuredGrid', featured);
-          document.getElementById('featuredCount').textContent = `${featured.length} games`;
+          this.renderGrid("featuredGrid", featured);
+          document.getElementById(
+            "featuredCount"
+          ).textContent = `${featured.length} games`;
         },
 
         renderAll() {
-          this.renderGrid('allGrid', this.games);
-          document.getElementById('allCount').textContent = `${this.games.length} games`;
+          this.renderGrid("allGrid", this.games);
+          document.getElementById(
+            "allCount"
+          ).textContent = `${this.games.length} games`;
         },
 
         renderGrid(containerId, items) {
@@ -2197,79 +2279,92 @@
                 <img src="${game.cover}" alt="${game.name}" loading="lazy">
                 <div class="game-info">
                     <div class="game-name">${game.name}</div>
-                    <div class="game-author-text">by ${game.author || 'Unknown'}</div>
+                    <div class="game-author-text">by ${
+                      game.author || "Unknown"
+                    }</div>
                 </div>
             </div>
         `
             )
-            .join('');
+            .join("");
 
-          grid.querySelectorAll('.game-card').forEach((card) => {
-            card.addEventListener('click', () =>
+          grid.querySelectorAll(".game-card").forEach((card) => {
+            card.addEventListener("click", () =>
               this.showPlayer(parseInt(card.dataset.id, 10), items)
             );
           });
         },
 
         filterGames(type) {
-          const filtered = type === 'featured' ? this.games.filter((g) => g.featured) : this.games;
+          const filtered =
+            type === "featured"
+              ? this.games.filter((g) => g.featured)
+              : this.games;
 
-          this.renderGrid('allGrid', filtered);
-          document.getElementById('allCount').textContent = `${filtered.length} games`;
+          this.renderGrid("allGrid", filtered);
+          document.getElementById(
+            "allCount"
+          ).textContent = `${filtered.length} games`;
         },
 
         setupSearch() {
-          const input = document.getElementById('search');
-          const browseView = document.getElementById('browseView');
-          const carouselContainer = document.querySelector('.carousel-container');
-          const featuredSection = document.getElementById('featuredSection');
-          const allSection = document.getElementById('allGrid').closest('.section');
+          const input = document.getElementById("search");
+          const browseView = document.getElementById("browseView");
+          const carouselContainer = document.querySelector(
+            ".carousel-container"
+          );
+          const featuredSection = document.getElementById("featuredSection");
+          const allSection = document
+            .getElementById("allGrid")
+            .closest(".section");
           let searchGrid = null;
           let noResultsNode = null;
 
-          input.addEventListener('input', (e) => {
+          input.addEventListener("input", (e) => {
             const query = e.target.value.toLowerCase().trim();
 
             if (!searchGrid) {
-              searchGrid = document.createElement('div');
-              searchGrid.id = 'searchGrid';
-              searchGrid.className = 'games-grid';
+              searchGrid = document.createElement("div");
+              searchGrid.id = "searchGrid";
+              searchGrid.className = "games-grid";
               browseView.appendChild(searchGrid);
             }
             if (!noResultsNode) {
-              noResultsNode = document.createElement('div');
-              noResultsNode.id = 'searchNoResults';
-              noResultsNode.style.padding = '24px';
-              noResultsNode.style.color = 'var(--muted-foreground)';
-              noResultsNode.style.textAlign = 'center';
-              noResultsNode.textContent = 'No results found.';
+              noResultsNode = document.createElement("div");
+              noResultsNode.id = "searchNoResults";
+              noResultsNode.style.padding = "24px";
+              noResultsNode.style.color = "var(--muted-foreground)";
+              noResultsNode.style.textAlign = "center";
+              noResultsNode.textContent = "No results found.";
               browseView.appendChild(noResultsNode);
             }
 
             if (!query) {
-              searchGrid.style.display = 'none';
-              noResultsNode.style.display = 'none';
-              if (carouselContainer) carouselContainer.style.display = '';
-              if (featuredSection) featuredSection.style.display = '';
-              if (allSection) allSection.style.display = '';
+              searchGrid.style.display = "none";
+              noResultsNode.style.display = "none";
+              if (carouselContainer) carouselContainer.style.display = "";
+              if (featuredSection) featuredSection.style.display = "";
+              if (allSection) allSection.style.display = "";
               return this.filterGames(this.activeFilter);
             }
 
-            if (carouselContainer) carouselContainer.style.display = 'none';
-            if (featuredSection) featuredSection.style.display = 'none';
-            if (allSection) allSection.style.display = 'none';
-            searchGrid.style.display = 'grid';
+            if (carouselContainer) carouselContainer.style.display = "none";
+            if (featuredSection) featuredSection.style.display = "none";
+            if (allSection) allSection.style.display = "none";
+            searchGrid.style.display = "grid";
 
             const filtered = this.games.filter(
-              (g) => g.name.toLowerCase().includes(query) || g.author?.toLowerCase().includes(query)
+              (g) =>
+                g.name.toLowerCase().includes(query) ||
+                g.author?.toLowerCase().includes(query)
             );
 
             if (filtered.length === 0) {
-              searchGrid.innerHTML = '';
-              noResultsNode.style.display = '';
+              searchGrid.innerHTML = "";
+              noResultsNode.style.display = "";
               return;
             } else {
-              noResultsNode.style.display = 'none';
+              noResultsNode.style.display = "none";
             }
 
             searchGrid.innerHTML = filtered
@@ -2279,15 +2374,17 @@
                     <img src="${game.cover}" alt="${game.name}" loading="lazy">
                     <div class="game-info">
                         <div class="game-name">${game.name}</div>
-                        <div class="game-author-text">by ${game.author || 'Unknown'}</div>
+                        <div class="game-author-text">by ${
+                          game.author || "Unknown"
+                        }</div>
                     </div>
                 </div>
             `
               )
-              .join('');
+              .join("");
 
-            searchGrid.querySelectorAll('.game-card').forEach((card) => {
-              card.addEventListener('click', () =>
+            searchGrid.querySelectorAll(".game-card").forEach((card) => {
+              card.addEventListener("click", () =>
                 this.showPlayer(parseInt(card.dataset.id, 10), filtered)
               );
             });
@@ -2295,13 +2392,13 @@
         },
 
         scrollCarousel(direction) {
-          const carousel = document.getElementById('carousel');
-          const card = carousel.querySelector('.carousel-card');
+          const carousel = document.getElementById("carousel");
+          const card = carousel.querySelector(".carousel-card");
           if (card) {
             const width = card.offsetWidth + 20;
             carousel.scrollBy({
               left: direction * width * 2,
-              behavior: 'smooth',
+              behavior: "smooth",
             });
           }
         },
@@ -2313,17 +2410,17 @@
           this.currentGame = game;
           this.isPlaying = false;
 
-          document.getElementById('browseView').classList.add('hidden');
-          const playerView = document.getElementById('playerView');
-          playerView.classList.add('active');
+          document.getElementById("browseView").classList.add("hidden");
+          const playerView = document.getElementById("playerView");
+          playerView.classList.add("active");
 
-          document.getElementById('breadcrumbGameName').textContent = game.name;
-          document.getElementById('playerTitle').textContent = game.name;
+          document.getElementById("breadcrumbGameName").textContent = game.name;
+          document.getElementById("playerTitle").textContent = game.name;
 
-          const gameIcon = document.getElementById('gameIcon');
+          const gameIcon = document.getElementById("gameIcon");
           gameIcon.innerHTML = `<img src="${game.cover}" alt="${game.name}">`;
 
-          const gameDisplay = document.getElementById('gameDisplay');
+          const gameDisplay = document.getElementById("gameDisplay");
           gameDisplay.innerHTML = `
         <div class="game-logo-large">
             <img src="${game.cover}" alt="${game.name}">
@@ -2331,7 +2428,7 @@
         <div class="game-details">
             <h2 class="game-title">${game.name}</h2>
             <p class="game-description">${
-              game.description || 'Click Play Now to start playing this game!'
+              game.description || "Click Play Now to start playing this game!"
             }</p>
         </div>
         <button class="play-button" id="playBtn">
@@ -2340,65 +2437,90 @@
         </button>
     `;
 
-          document.getElementById('playBtn').addEventListener('click', () => {
+          document.getElementById("playBtn").addEventListener("click", () => {
             if (this.currentGame) {
               this.playGame(this.currentGame);
             }
           });
 
-          document.getElementById('fullscreenBtn').disabled = true;
-          document.getElementById('fullscreenBtn').removeEventListener('click', this.fullscreen);
+          document.getElementById("fullscreenBtn").disabled = true;
           document
-            .getElementById('fullscreenBtn')
-            .addEventListener('click', () => this.fullscreen());
+            .getElementById("fullscreenBtn")
+            .removeEventListener("click", this.fullscreen);
+          document
+            .getElementById("fullscreenBtn")
+            .addEventListener("click", () => this.fullscreen());
 
-          document.getElementById('downloadBtn').removeEventListener('click', this.download);
-          document.getElementById('downloadBtn').addEventListener('click', () => this.download());
+          document
+            .getElementById("downloadBtn")
+            .removeEventListener("click", this.download);
+          document
+            .getElementById("downloadBtn")
+            .addEventListener("click", () => this.download());
 
-          document.getElementById('externalBtn').removeEventListener('click', this.openExternal);
-          document.getElementById('externalBtn').addEventListener('click', async () => {
-            if (this.currentGame && this.currentGame.url) {
-              try {
-                const response = await fetch(this.currentGame.url);
-                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          document
+            .getElementById("externalBtn")
+            .removeEventListener("click", this.openExternal);
+          document
+            .getElementById("externalBtn")
+            .addEventListener("click", async () => {
+              if (this.currentGame && this.currentGame.url) {
+                try {
+                  const response = await fetch(
+                    this.currentGame.url + "?t=" + Date.now()
+                  );
+                  if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
-                const html = await response.text();
-                const blob = new Blob([html], { type: 'text/html' });
-                const blobUrl = URL.createObjectURL(blob);
+                  const html = await response.text();
 
-                const newWindow = window.open('about:blank', '_blank');
-                if (newWindow) {
-                  newWindow.location.href = blobUrl;
-                  showToast('Opening Game', 'Game opened in new window', 'success');
-                } else {
-                  showToast('Blocked', 'Please allow popups for this site', 'error');
+                  const newWindow = window.open("about:blank", "_blank");
+                  if (newWindow) {
+                    newWindow.document.open();
+                    newWindow.document.write(html);
+                    newWindow.document.close();
+                    showToast(
+                      "Opening Game",
+                      "Game opened in new window",
+                      "success"
+                    );
+                  } else {
+                    showToast(
+                      "Blocked",
+                      "Please allow popups for this site",
+                      "error"
+                    );
+                  }
+                } catch (err) {
+                  console.error("Failed to open game:", err);
+                  showToast("Error", "Failed to open game externally", "error");
                 }
-              } catch (err) {
-                console.error('Failed to open game:', err);
-                showToast('Error', 'Failed to open game externally', 'error');
               }
-            }
-          });
+            });
 
-          document.getElementById('reloadBtn').removeEventListener('click', this.reloadGame);
-          document.getElementById('reloadBtn').addEventListener('click', () => {
+          document
+            .getElementById("reloadBtn")
+            .removeEventListener("click", this.reloadGame);
+          document.getElementById("reloadBtn").addEventListener("click", () => {
             if (this.isPlaying) {
-              const iframe = document.querySelector('#gameDisplay iframe');
-              if (iframe) {
-                iframe.src = iframe.src;
-                showToast('Reloading', 'Game is reloading...', 'info');
+              const iframe = document.querySelector("#gameDisplay iframe");
+              if (iframe && iframe.contentDocument) {
+                const html = iframe.contentDocument.documentElement.outerHTML;
+                iframe.contentDocument.open();
+                iframe.contentDocument.write(html);
+                iframe.contentDocument.close();
+                showToast("Reloading", "Game is reloading...", "info");
               }
             }
           });
 
           this.renderSimilarGames(contextGames || this.games);
           lucide.createIcons();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+          window.scrollTo({ top: 0, behavior: "smooth" });
         },
 
         renderSimilarGames(source) {
           if (!this.currentGame) return;
-          const container = document.getElementById('similarGames');
+          const container = document.getElementById("similarGames");
           const src = Array.isArray(source) ? source : this.games || [];
           const similar = src
             .filter((g) => g.id !== this.currentGame.id)
@@ -2412,25 +2534,27 @@
                 <img src="${game.cover}" alt="${game.name}" loading="lazy">
                 <div class="similar-card-info">
                     <div class="similar-card-title">${game.name}</div>
-                    <div class="similar-card-author">by ${game.author || 'Unknown'}</div>
+                    <div class="similar-card-author">by ${
+                      game.author || "Unknown"
+                    }</div>
                 </div>
             </div>
         `
             )
-            .join('');
+            .join("");
 
-          container.querySelectorAll('.similar-card').forEach((card) => {
-            card.addEventListener('click', () =>
+          container.querySelectorAll(".similar-card").forEach((card) => {
+            card.addEventListener("click", () =>
               this.showPlayer(parseInt(card.dataset.id, 10), src)
             );
           });
         },
 
         showBrowse() {
-          document.getElementById('playerView').classList.remove('active');
-          document.getElementById('browseView').classList.remove('hidden');
-          const gameDisplay = document.getElementById('gameDisplay');
-          gameDisplay.innerHTML = '';
+          document.getElementById("playerView").classList.remove("active");
+          document.getElementById("browseView").classList.remove("hidden");
+          const gameDisplay = document.getElementById("gameDisplay");
+          gameDisplay.innerHTML = "";
           this.currentGame = null;
           this.isPlaying = false;
           lucide.createIcons();
@@ -2438,11 +2562,11 @@
 
         async playGame(game) {
           if (!game || !game.url) {
-            showToast('Error', 'Game URL not available', 'error');
+            showToast("Error", "Game URL not available", "error");
             return;
           }
 
-          const gameDisplay = document.getElementById('gameDisplay');
+          const gameDisplay = document.getElementById("gameDisplay");
 
           gameDisplay.innerHTML = `
         <div class="loading-overlay">
@@ -2451,48 +2575,42 @@
         </div>
     `;
 
-          showToast('Loading', 'Starting game...', 'info');
+          showToast("Loading", "Starting game...", "info");
 
           try {
-            const response = await fetch(game.url);
+            const response = await fetch(game.url + "?t=" + Date.now());
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
             const html = await response.text();
 
-            const blob = new Blob([html], { type: 'text/html' });
-            const blobUrl = URL.createObjectURL(blob);
+            gameDisplay.innerHTML = "";
 
-            const iframe = document.createElement('iframe');
-            iframe.style.width = '100%';
-            iframe.style.height = '100%';
-            iframe.style.border = 'none';
-            iframe.style.position = 'absolute';
-            iframe.style.inset = '0';
-            iframe.allow = 'fullscreen; autoplay; encrypted-media';
-            iframe.sandbox = 'allow-scripts allow-same-origin allow-pointer-lock allow-forms';
-            iframe.src = blobUrl;
+            const iframe = document.createElement("iframe");
+            iframe.style.cssText =
+              "width: 100%; height: 100%; border: none; position: absolute; inset: 0;";
+            iframe.allow = "fullscreen; autoplay; encrypted-media";
+            iframe.sandbox =
+              "allow-scripts allow-same-origin allow-pointer-lock allow-forms";
 
             iframe.onload = () => {
-              const loadingOverlay = gameDisplay.querySelector('.loading-overlay');
-              if (loadingOverlay) {
-                loadingOverlay.style.opacity = '0';
-                loadingOverlay.style.transition = 'opacity 0.3s';
-                setTimeout(() => loadingOverlay.remove(), 300);
-              }
-              document.getElementById('fullscreenBtn').disabled = false;
+              document.getElementById("fullscreenBtn").disabled = false;
               this.isPlaying = true;
-              showToast('Ready', 'Game loaded successfully!', 'success');
+              showToast("Ready", "Game loaded successfully!", "success");
               lucide.createIcons();
             };
 
             iframe.onerror = () => {
-              throw new Error('Failed to load iframe');
+              throw new Error("Failed to load iframe");
             };
 
             gameDisplay.appendChild(iframe);
+
+            iframe.contentDocument.open();
+            iframe.contentDocument.write(html);
+            iframe.contentDocument.close();
           } catch (err) {
-            console.error('Failed to load game:', err);
-            showToast('Error', 'Failed to load game', 'error');
+            console.error("Failed to load game:", err);
+            showToast("Error", "Failed to load game", "error");
             gameDisplay.innerHTML = `
             <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: var(--muted-foreground); flex-direction: column; gap: 12px; padding: 24px; text-align: center;">
                 <i data-lucide="alert-circle" style="width: 48px; height: 48px;"></i>
@@ -2504,7 +2622,7 @@
         },
 
         fullscreen() {
-          const iframe = document.querySelector('#gameDisplay iframe');
+          const iframe = document.querySelector("#gameDisplay iframe");
           if (iframe) {
             if (iframe.requestFullscreen) {
               iframe.requestFullscreen();
@@ -2515,32 +2633,39 @@
             } else if (iframe.msRequestFullscreen) {
               iframe.msRequestFullscreen();
             }
-            showToast('Fullscreen', 'Entering fullscreen mode', 'success');
+            showToast("Fullscreen", "Entering fullscreen mode", "success");
           }
         },
 
         async download() {
           if (!this.currentGame || !this.currentGame.url) {
-            showToast('Error', 'No game selected', 'error');
+            showToast("Error", "No game selected", "error");
             return;
           }
 
           try {
-            showToast('Downloading', 'Preparing download...', 'info');
-            const response = await fetch(this.currentGame.url);
+            showToast("Downloading", "Preparing download...", "info");
+            const response = await fetch(
+              this.currentGame.url + "?t=" + Date.now()
+            );
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
             const html = await response.text();
-            const blob = new Blob([html], { type: 'text/html' });
-            const link = document.createElement('a');
+            const blob = new Blob([html], { type: "text/html" });
+            const link = document.createElement("a");
             link.href = URL.createObjectURL(blob);
-            link.download = `${this.currentGame.name.replace(/[^a-z0-9]/gi, '_')}.html`;
+            link.download = `${this.currentGame.name.replace(
+              /[^a-z0-9]/gi,
+              "_"
+            )}.html`;
+            document.body.appendChild(link);
             link.click();
+            document.body.removeChild(link);
             URL.revokeObjectURL(link.href);
-            showToast('Success', 'Game downloaded successfully', 'success');
+            showToast("Success", "Game downloaded successfully", "success");
           } catch (err) {
-            console.error('Download failed:', err);
-            showToast('Error', 'Failed to download game', 'error');
+            console.error("Download failed:", err);
+            showToast("Error", "Failed to download game", "error");
           }
         },
       };
